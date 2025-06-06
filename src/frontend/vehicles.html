@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Véhicules</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="user-info">
+        <span id="username">Nom d'utilisateur</span>
+        <button onclick="logout()" class="logout-button">Se déconnecter</button>
+      </div>
+      <h2>API Méthodes</h2>
+      <button class="method-button" style="background-color: green;" onclick="openDialog('GET')">GET</button>
+      <button class="method-button" style="background-color: yellow;" onclick="openDialog('POST')">POST</button>
+      <button class="method-button" style="background-color: blue;" onclick="openDialog('PUT')">PUT</button>
+      <button class="method-button" style="background-color: red;" onclick="openDialog('DELETE')">DELETE</button>
+      <button class="method-button" style="background-color: violet;" onclick="openDialog('SEARCH')">SEARCH</button>
+    </div>
+    <div class="content">
+      <h2>Liste des véhicules🚗</h2>
+      <div id="resultDisplay"></div>
+    </div>
+  </div>
+
+  <div id="requestDialog" class="dialog">
+    <div class="dialog-content">
+      <span class="close" onclick="closeDialog()">&times;</span>
+      <h2 id="dialogTitle">Requête API</h2>
+      <input type="text" id="apiRequest" placeholder="Entrez votre requête" />
+      <button onclick="sendRequest()">Envoyer</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+  <script >function openDialog(method) {
+    document.getElementById('dialogTitle').innerText = method + ' Requête';
+    document.getElementById('requestDialog').style.display = 'block';
+  }
+  
+  function closeDialog() {
+    document.getElementById('requestDialog').style.display = 'none';
+  }
+  
+  function sendRequest() {
+    const request = document.getElementById('apiRequest').value;
+    console.log(request);
+    document.getElementById('resultDisplay').innerText = 'Requête envoyée: ' + request;
+    closeDialog();
+  }
+  
+  function logout() {
+    console.log('Déconnecté');
+  }
+
+  document.addEventListener('mousemove', (e) => {
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+  
+    document.body.style.backgroundPosition = `${x * 100}% ${y * 100}%`;
+  });</script>
+</body>
+</html>
